@@ -1,0 +1,37 @@
+
+server:
+  port: 8088
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jpa?serverTimezone=UTC
+    username: root
+    password: abc123
+    # 使用druid数据源
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      #create 启动时删数据库中的表，然后创建，退出时不删除数据表
+      #create-drop 启动时删数据库中的表，然后创建，退出时删除数据表 如果表不存在报错
+      #update 如果启动时表格式不一致则更新表，原有数据保留
+      #validate 项目启动表结构进行校验 如果不一致则报错
+
+      ddl-auto: none
+      use-new-id-generator-mappings: 'true'
+      dialect: org.hibernate.dialect.MySQL57Dialec
+    database: mysql
+
